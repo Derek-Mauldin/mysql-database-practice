@@ -6,7 +6,6 @@
 */
 
 require_once("derek.php");
-require_once("style.css");
 
 try {
 
