@@ -5,6 +5,7 @@
    April 27, 2016
 */
 
+require_once("style.css");
 require_once("derek.php");
 
 try {
