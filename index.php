@@ -2,8 +2,7 @@
 
 /* php program to practice with databes handleing
    written by Derek Mauldin
-   April 27, 2016
-*/
+   April 27, 2016 */
 
 require_once("style.css");
 require_once("derek.php");
