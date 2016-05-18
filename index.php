@@ -6,8 +6,7 @@
 
 require_once("style.css");
 require_once("derek.php");
-
-try {
+require_once("user.php");
 
 // setup dsn and options
 $dsn = 'mysql:host=' . $config["hostname"] . ';dbname=' . $config["database"];
@@ -17,35 +16,30 @@ $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
 $pdo = new PDO($dsn, $config["username"], $config["password"], $options);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// setup query and execute
-$query = 'SELECT userId, username, userEmail, dateCreated FROM user';
-$statement = $pdo->prepare($query);
-$statement->execute();
-$statement->setFetchMode(PDO::FETCH_ASSOC);
 
-// setup table and table headers
-echo "<table>";
-echo "<tr>";
-echo "<th>User ID</th>";
-echo "<th>User Name</th>";
-echo "<th>User Email</th>";
-echo "<th>Date Created</th>";
-echo "</tr>";
 
-while(($row = $statement->fetch()) !== false) {
-  echo "<tr>";
-  echo ("<td>" . $row["userId"] . "</td>");
-  echo ("<td>" . $row["username"] . "</td>");
-  echo ("<td>" . $row["userEmail"] . "</td>");
-  echo ("<td>" . $row["dateCreated"] . "</td>");
-  echo "</tr>";
+$ourUsers = User::getAllUsers($pdo);
+
+$ourUsers->rewind();
+
+
+foreach($ourUsers as $user) {
+
+	if($user->getUserName() === "Flash") {
+		echo "Flase Email is " . $user->getUserEmail();
+	}
+
+
 }
-echo "</table>";  // end table
 
-$pdo = null;
 
-} catch (PDOException $e){
-    echo $e->getMessage();
-}
+
+
+
+
+
+
+
+
 
  ?>
