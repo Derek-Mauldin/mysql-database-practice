@@ -34,12 +34,4 @@ foreach($ourUsers as $user) {
 
 
 
-
-
-
-
-
-
-
-
- ?>
+?>
